@@ -60,8 +60,8 @@ const Header = () => {
         <a className="" href="/">
           <img src={Logo} className=" w-[100px]"></img>
         </a>
-        <div className="hidden lg:flex navButton items-center  text-white  gap-3 !cursor-default">
-          <a href="#homeOne" className="navItem px-4 cursor-pointer">
+        <div className="hidden lg:flex bg-[#1f2937] px-[1rem] rounded-[200px] items-center  text-white  gap-3 !cursor-default">
+         <a href="#homeOne" className="navItem px-4 cursor-pointer">
             Home
           </a>
           <div className="navItem  px-4 group ">
