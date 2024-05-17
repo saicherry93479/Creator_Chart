@@ -1,21 +1,33 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import PricingList from "./components/PricingList";
-import Team from "./components/Team";
-import Testimonals from "./components/Testimonals";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Onboard from "./Pages/Onboard";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { AuthProvider } from "./components/AuthProvider";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import DashBoard from "./Pages/DashBoard";
 
 const App = () => {
   // 202124
   return (
-    <div className="bg-white dark:bg-black ">
-      <Header></Header>
-      <Home></Home>
-      <Testimonals></Testimonals>
-      <Team></Team>
-      <PricingList></PricingList>
-      <Footer></Footer>
-    </div>
+    <GoogleOAuthProvider
+      clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID as string}
+    >
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Onboard />} />
+
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <DashBoard></DashBoard>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 };
 
